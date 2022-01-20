@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace primeira_api_data_driven_asp
+namespace Primeira_api_data_driven_asp.Models
 {
     public class Category
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using primeira_api_data_driven_asp;
+using Primeira_api_data_driven_asp.Models;
 
 [Route("categories")]
 public class CategoryController : ControllerBase

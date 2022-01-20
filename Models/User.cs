@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace primeira_api_data_driven_asp
+namespace Primeira_api_data_driven_asp.Models
 {
     public class User
     {
@@ -8,13 +8,13 @@ namespace primeira_api_data_driven_asp
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Este campo é obrigatório.")]
+        [Required(ErrorMessage = "Este campo e obrigatorio.")]
         [MaxLength(20, ErrorMessage = "Este campo deve conter entre 3 e 20 caracteres.")]
         [MinLength(3, ErrorMessage = "Este campo deve conter entre 3 e 20 caracteres.")]
 
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Este campo é obrigatório.")]
+        [Required(ErrorMessage = "Este campo e obrigatorio.")]
         [MaxLength(20, ErrorMessage = "Este campo deve conter entre 3 e 20 caracteres.")]
         [MinLength(3, ErrorMessage = "Este campo deve conter entre 3 e 20 caracteres.")]
 
