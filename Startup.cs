@@ -22,6 +22,7 @@ namespace primeira_api_data_driven_asp.net
         {
             services.AddControllers();
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DataBase"));
+            services.AddScoped<DataContext, DataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
