@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +33,17 @@ public class CategoryController : ControllerBase
         }
         else
         {
-            context.Categories.Add(model);
-            await context.SaveChangesAsync();
-            return Ok(model);
+            try
+            {
+                context.Categories.Add(model);
+                await context.SaveChangesAsync();
+                return Ok(model);
+            }
+            catch(Exception)
+            {
+                return BadRequest( new { message = "Não foi possível criar a categoria." } );
+            }
+            
         }       
     }
 
