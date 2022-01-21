@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Primeira_api_data_driven_asp.Data;
 using Primeira_api_data_driven_asp.Models;
 
@@ -49,7 +50,7 @@ public class CategoryController : ControllerBase
 
     [HttpPut]
     [Route("{id:int}")]
-    public async Task<ActionResult<List<Category>>> Put(int id, [FromBody] Category model)
+    public async Task<ActionResult<List<Category>>> Put(int id, [FromBody] Category model, [FromServices] DataContext context)
     {
         if(model.Id != id)
         {
@@ -61,7 +62,20 @@ public class CategoryController : ControllerBase
         }
         else
         {
-            return Ok(model);
+            try
+            {
+                context.Entry<Category>(model).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+                return Ok(model);
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                return BadRequest(new { message = "Este registro já foi atualizado." });
+            }
+            catch(Exception)
+            {
+                return BadRequest(new { message = "Não foi possível atualizar a categoria." });
+            }           
         }       
     }
 
