@@ -4,9 +4,11 @@
     <RootNamespace>primeira_api_data_driven_asp.net</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.22"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.22"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.22"/>
   </ItemGroup>
 </Project>
