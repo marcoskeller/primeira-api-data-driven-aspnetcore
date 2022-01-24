@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Primeira_api_data_driven_asp.Data;
@@ -12,6 +14,21 @@ namespace Primeira_api_data_driven_asp.Controllers
     [Route("users")]
     public class UserController : ControllerBase
     {
+        [HttpGet]
+        [Route("")]
+        [Authorize(Roles = "manager")]
+        public async Task<ActionResult<List<User>>> Get([FromServices] DataContext context, [FromBody] User model)
+        {
+            var users = await context
+                        .Users
+                        .AsNoTracking()
+                        .ToListAsync();
+            return users;                  
+        }
+
+        [HttpPost]
+        [Route("")]
+        [AllowAnonymous]
         public async Task<ActionResult<User>> Post([FromServices] DataContext context, [FromBody] User model)
         {
             if(!ModelState.IsValid)
@@ -33,6 +50,33 @@ namespace Primeira_api_data_driven_asp.Controllers
             }       
         }
 
+        [HttpPut]
+        [Route("{id:int}")]
+        [Authorize(Roles = "manager")]
+        public async Task<ActionResult<User>> Put([FromServices] DataContext context,int id, [FromBody] User model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else if(id != model.Id)
+            {
+                return NotFound(new { message = "Usuário não encontrado."});
+            }
+            else
+            {
+                try
+                {
+                    context.Entry(model).State = EntityState.Modified;
+                    await context.SaveChangesAsync();
+                    return Ok(model);
+                }
+                catch(Exception)
+                {
+                    return BadRequest( new { message = "Não foi possível criar o usuário." } );
+                }                
+            }       
+        }
 
         [HttpPost]
         [Route("login")]
