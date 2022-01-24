@@ -11,7 +11,7 @@ using Primeira_api_data_driven_asp.Services;
 
 namespace Primeira_api_data_driven_asp.Controllers
 {
-    [Route("users")]
+    [Route("v1/users")]
     public class UserController : ControllerBase
     {
         [HttpGet]

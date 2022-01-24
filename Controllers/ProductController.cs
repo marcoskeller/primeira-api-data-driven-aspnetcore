@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Primeira_api_data_driven_asp.Data;
 using Primeira_api_data_driven_asp.Models;
 
-[Route("products")]
+[Route("v1/products")]
 public class ProductController : ControllerBase
 {
     [HttpGet]
