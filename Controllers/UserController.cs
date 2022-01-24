@@ -17,13 +17,13 @@ namespace Primeira_api_data_driven_asp.Controllers
         [HttpGet]
         [Route("")]
         [Authorize(Roles = "manager")]
-        public async Task<ActionResult<List<User>>> Get([FromServices] DataContext context, [FromBody] User model)
+        public async Task<ActionResult<List<User>>> Get([FromServices] DataContext context)
         {
             var users = await context
                         .Users
                         .AsNoTracking()
                         .ToListAsync();
-            return users;                  
+            return Ok(users);                  
         }
 
         [HttpPost]
