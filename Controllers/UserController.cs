@@ -112,7 +112,7 @@ namespace Primeira_api_data_driven_asp.Controllers
                 }
             }catch(Exception)
             {
-                return BadRequest( new { message = "Não foi gerar o token." } );
+                return BadRequest( new { message = "Não foi possível gerar o token." } );
             }                                  
         }
     }  
