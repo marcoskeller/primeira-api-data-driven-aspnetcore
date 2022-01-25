@@ -57,10 +57,14 @@ namespace primeira_api_data_driven_asp.net
                 };
             });
 
-            //services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DataBase"));
-            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            //Usando o banco de dados em memória
+            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("DataBase"));
 
-            services.AddScoped<DataContext, DataContext>();
+            //Usando o banco de dados Sql
+            //services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+
+            //Essa linha pode ser removida pois AddDbContext já faz a função do AddScoped
+            //services.AddScoped<DataContext, DataContext>();
 
             services.AddSwaggerGen(c =>
             {

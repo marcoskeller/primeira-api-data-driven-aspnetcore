@@ -39,8 +39,15 @@ namespace Primeira_api_data_driven_asp.Controllers
             {
                 try
                 {
+                    //Força o usuário a ser sempre um funcionário
+                    model.Role = "employee";
+
                     context.Users.Add(model);
                     await context.SaveChangesAsync();
+
+                    //Esconde a senha cadastrada
+                    model.Password = "";
+                    
                     return Ok(model);
                 }
                 catch(Exception)
